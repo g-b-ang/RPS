@@ -3,8 +3,10 @@
  * Return string of random computer choice: rock, paper, or scissors
  */
 function computerPlay(){
-    let randomIdx = Math.floor(Math.random(0,3));
-    let choiceArr = ["Rock","Paper", "Scissors"];
+
+    // Pick random number [0-2]
+    let randomIdx = Math.floor(Math.random() * 3);
+    let choiceArr = ["Rock", "Paper", "Scissors"];
     return choiceArr[randomIdx];
 }
 
@@ -15,15 +17,15 @@ function computerPlay(){
  * @param {*} playerSelection 
  * @param {*} computerSelection 
  */
-function playRound(playerSelection, computerSelection){
+function playRound(player, computer){
 
     // Make choices case insensitive
-    playerSelection.toUpperCase();
-    computerSelection.toUpperCase();
+    let playerSelection = player.toUpperCase();
+    let computerSelection = computer.toUpperCase();
 
     // Return this
     var results = {
-        msg: '',
+        msg: "",
         p1: 0,
         p2: 0
     };
@@ -92,10 +94,11 @@ function playRound(playerSelection, computerSelection){
 function game(){
     var playerScore = 0;
     var computerScore = 0;
-    var numberOfRounds = 5;
+    const numberOfRounds = 5;
     let playerChoice;
     let computerChoice;
 
+    let roundResults;
     console.log("Let's start an RPS game!");
 
     // Play numberOfRounds rounds of RPS
@@ -105,8 +108,9 @@ function game(){
         computerChoice = computerPlay();
         playerChoice = prompt("Choose: [ROCK PAPER SCISSORS]");
 
+        console.log("comp chose: " + computerChoice);
         // Play a round
-        let roundResults = playRound(playerChoice,computerChoice);
+        roundResults = playRound(playerChoice,computerChoice);
 
         // Print round result message
         console.log( roundResults.msg );
